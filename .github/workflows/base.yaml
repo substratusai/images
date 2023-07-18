@@ -2,6 +2,8 @@ name: base
 run-name: ${{ github.actor }} triggered Docker pipeline 🚀
 on:
   push:
+    paths:
+      - 'base/*'
     branches:
       - main
     tags:
