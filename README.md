@@ -1,1 +1,1 @@
-# Substratus Base Images
+# Substratus Images
