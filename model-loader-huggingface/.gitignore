@@ -1,0 +1,5 @@
+logs/
+model/
+
+.venv
+.ipynb_checkpoints
