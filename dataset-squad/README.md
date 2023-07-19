@@ -7,14 +7,14 @@ https://rajpurkar.github.io/SQuAD-explorer/
 Build.
 
 ```sh
-docker build -t squad-dataset .
+docker build -t substratusai/dataset-squad .
 ```
 
 Explore and develop with a Jupyter Lab.
 
 ```sh
 # Run a Jupyter Notebook.
-docker run -it -e LOAD_DATA_PATH=/data/all.jsonl -v $(pwd)/data:/data -v $(pwd)/src:/dataset/src -p 8888:8888 squad-dataset notebook.sh
+docker run -it -v $(pwd)/data:/data -v $(pwd)/src:/dataset/src -p 8888:8888 dataset-squad notebook.sh
 
 # In another terminal: Open browser.
 open http://localhost:8888
@@ -22,7 +22,7 @@ open http://localhost:8888
 # Now you can edit the contents of `src/`.
 
 # Re-build the container if you changed anything.
-docker build -t squad-dataset .
+docker build -t substratusai/dataset-squad .
 ```
 
 Fetch data.

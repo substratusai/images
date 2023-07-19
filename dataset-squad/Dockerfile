@@ -1,13 +1,7 @@
-FROM python:3.10
-
-RUN mkdir /content
-WORKDIR /content
+FROM substratusai/base
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
-ENV PATH="$PATH:/content/scripts"
-
-# Copy in build dependencies only since the build will take a while.
 COPY ./scripts/ ./scripts
 COPY ./src/ ./src
