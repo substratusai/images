@@ -4,7 +4,7 @@ https://rajpurkar.github.io/SQuAD-explorer/
 
 ## Usage
 
-Build.
+Build image.
 
 ```sh
 docker build -t substratusai/dataset-squad .
@@ -20,9 +20,7 @@ docker run -it -v $(pwd)/data:/data -v $(pwd)/src:/dataset/src -p 8888:8888 data
 open http://localhost:8888
 
 # Now you can edit the contents of `src/`.
-
-# Re-build the container if you changed anything.
-docker build -t substratusai/dataset-squad .
+# Don't forget to re-build the container if you changed anything.
 ```
 
 Fetch data.

@@ -28,7 +28,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: substratusai/base
+          images: substratusai/dataset-squad
       - name: Build and push
         id: build-and-push
         uses: docker/build-push-action@v4
