@@ -1,4 +1,4 @@
-name: Docker pipeline
+name: model-trainer-huggingface-container
 run-name: ${{ github.actor }} triggered Docker pipeline for model-trainer-huggingface 🚀
 on:
   push:
