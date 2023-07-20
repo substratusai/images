@@ -12,7 +12,7 @@ RUN --mount=type=cache,target=/var/cache/apt --mount=type=cache,target=/var/lib/
 COPY requirements.txt /content/requirements.txt
 RUN pip install --no-cache-dir -r /content/requirements.txt
 
-COPY *.sh /content/bin/
+COPY bin/* ./bin/
 COPY src/* ./src/
 
 CMD train.sh
