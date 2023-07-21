@@ -1,5 +1,5 @@
 name: dataset-squad
-run-name: ${{ github.actor }} triggered Docker pipeline 🚀
+run-name: ${{ github.actor }} triggered Docker pipeline for ${{ github.workflow }} 🚀
 on:
   push:
     paths:

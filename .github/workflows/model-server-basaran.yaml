@@ -1,9 +1,9 @@
-name: model-trainer-huggingface
+name: model-server-basaran
 run-name: ${{ github.actor }} triggered Docker pipeline for ${{ github.workflow }} 🚀
 on:
   push:
     paths:
-      - 'model-trainer-huggingface/*'
+      - "model-server-basaran/*"
     branches:
       - main
     tags:
@@ -28,12 +28,13 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: substratusai/model-trainer-huggingface
+          # GITHUB_WORKFLOW is the same as workflow name
+          images: substratusai/${{ github.workflow }}
       - name: Build and push
         id: build-and-push
         uses: docker/build-push-action@v4
         with:
-          context: ./model-trainer-huggingface
+          context: ./${{ github.workflow }}
           platforms: "linux/amd64"
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
