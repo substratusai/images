@@ -33,7 +33,7 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@v4
         with:
-          context: .
+          context: ./model-trainer-huggingface
           platforms: "linux/amd64"
           # push: ${{ github.event_name != 'pull_request' }}
           push: false
