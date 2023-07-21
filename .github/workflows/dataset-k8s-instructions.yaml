@@ -1,9 +1,9 @@
-name: model-trainer-huggingface-container
-run-name: ${{ github.actor }} triggered Docker pipeline for model-trainer-huggingface 🚀
+name: dataset-k8s-instructions
+run-name: ${{ github.actor }} triggered Docker pipeline 🚀
 on:
   push:
     paths:
-      - 'model-trainer-huggingface/*'
+      - 'dataset-k8s-instructions/*'
     branches:
       - main
     tags:
@@ -28,12 +28,12 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: substratusai/model-trainer-huggingface
+          images: substratusai/dataset-k8s-instructions
       - name: Build and push
         id: build-and-push
         uses: docker/build-push-action@v4
         with:
-          context: ./model-trainer-huggingface
+          context: ./dataset-k8s-instructions
           platforms: "linux/amd64"
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
