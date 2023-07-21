@@ -1,9 +1,9 @@
-name: model-loader-huggingface
-run-name: ${{ github.actor }} triggered Docker pipeline for model-loader-huggingface 🚀
+name: model-trainer-huggingface-container
+run-name: ${{ github.actor }} triggered Docker pipeline for model-trainer-huggingface 🚀
 on:
   push:
     paths:
-      - 'model-loader-huggingface/*'
+      - 'model-trainer-huggingface/*'
     branches:
       - main
     tags:
@@ -28,12 +28,12 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: substratusai/model-loader-huggingface
+          images: substratusai/model-trainer-huggingface
       - name: Build and push
         id: build-and-push
         uses: docker/build-push-action@v4
         with:
-          context: ./model-loader-huggingface
+          context: ./model-trainer-huggingface
           platforms: "linux/amd64"
           # push: ${{ github.event_name != 'pull_request' }}
           push: false
