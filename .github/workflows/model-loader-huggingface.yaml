@@ -35,7 +35,6 @@ jobs:
         with:
           context: ./model-loader-huggingface
           platforms: "linux/amd64"
-          # push: ${{ github.event_name != 'pull_request' }}
-          push: false
+          push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
