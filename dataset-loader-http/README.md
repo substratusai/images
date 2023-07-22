@@ -4,7 +4,7 @@ Load existing files into Substratus by downloading using HTTP
 
 ## Usage
 
-Build.
+Build the image locally:
 
 ```sh
 docker build -t dataset-loader-http .
