@@ -11,3 +11,5 @@ ENV PATH="$PATH:/content/bin"
 # Copy in build dependencies only since the build will take a while.
 COPY ./bin/ ./bin
 COPY ./src/ ./src
+
+CMD load.sh
