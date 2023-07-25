@@ -29,6 +29,10 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: substratusai/${{ github.job }}
+      - id: tag
+        run: |
+          tag=$(echo "${{ fromJSON(steps.meta.outputs.json).tags[0] }}" | base64) 
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
       - name: Build and push
         id: build-and-push
         uses: docker/build-push-action@v4
@@ -39,7 +43,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
     outputs:
-      tags: ${{ steps.meta.outputs.tags }}
+      tag: ${{ steps.tag.outputs.tag }}
   model-trainer-huggingface:
     needs: base
     runs-on: ubuntu-latest
