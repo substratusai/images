@@ -2,7 +2,7 @@ name: model-trainer-huggingface
 run-name: ${{ github.actor }} triggered Docker pipeline for ${{ github.workflow }} 🚀
 on:
   workflow_run:
-    workflows: ["base"]
+    workflows: [base]
     types:
       - completed
 #  push:
