@@ -12,7 +12,12 @@ RUN apt-get update
 
 # Install Python
 ARG PYTHON3_VERSION=3.12
-RUN apt-get -y install python$PYTHON3_VERSION python3-pip
+RUN --mount=type=cache,target=/var/cache/apt --mount=type=cache,target=/var/lib/apt \
+    apt-get update && \
+    apt-get -y --no-install-recommends install python${PYTHON3_VERSION} python3-pip git && \
+    rm -rf /var/lib/apt/lists/*
+
+
 
 # Tini for signal handling, etc.
 # https://github.com/krallin/tini
@@ -21,16 +26,6 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
 ENTRYPOINT ["/tini", "--"]
 
-# Add "ml" user
-#ARG USER=ml
-#RUN useradd -ms /bin/bash $USER
-#RUN usermod -aG sudo $USER
-#RUN mkdir /home/$USER/scripts
-#ENV PATH="$PATH:/home/ml/scripts"
-## pip3 will install stuff here:
-#ENV PATH="$PATH:/home/ml/.local/bin"
-#WORKDIR /home/$USER
-#USER $USER
 
 # Using /content matches colab.
 # Precreate some paths for convenience (when mounts are not present).

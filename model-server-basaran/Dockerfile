@@ -1,11 +1,10 @@
-FROM nvidia/cuda:11.7.1-devel-ubuntu22.04
+FROM substratusai/base
 
 ENV MODEL="/content/saved-model"
 ENV MODEL_LOCAL_FILES_ONLY="true"
 ENV MODEL_LOAD_IN_8BIT="true"
 ENV MODEL_TRUST_REMOTE_CODE="true"
 ENV PORT=8080
-ENV PATH="$PATH:/content/scripts"
 
 WORKDIR /content
 
