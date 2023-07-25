@@ -10,6 +10,8 @@ on:
       - "v*.*.*"
   pull_request:
 jobs:
+  base:
+    uses: ./.github/workflows/base.yaml
   docker-pipeline:
     runs-on: ubuntu-latest
     steps:
