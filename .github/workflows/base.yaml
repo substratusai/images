@@ -1,7 +1,6 @@
 name: base
 run-name: ${{ github.actor }} triggered Docker pipeline for ${{ github.workflow }} 🚀
 on:
-  workflow_call:
   push:
     paths:
       - 'base/*'

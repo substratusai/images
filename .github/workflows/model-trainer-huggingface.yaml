@@ -1,17 +1,19 @@
 name: model-trainer-huggingface
 run-name: ${{ github.actor }} triggered Docker pipeline for ${{ github.workflow }} 🚀
 on:
-  push:
-    paths:
-      - 'model-trainer-huggingface/*'
-    branches:
-      - main
-    tags:
-      - "v*.*.*"
-  pull_request:
+  workflow_run:
+    workflows: ["base"]
+    types:
+      - completed
+#  push:
+#    paths:
+#      - 'model-trainer-huggingface/*'
+#    branches:
+#      - main
+#    tags:
+#      - "v*.*.*"
+#  pull_request:
 jobs:
-  base:
-    uses: ./.github/workflows/base.yaml
   docker-pipeline:
     runs-on: ubuntu-latest
     steps:
