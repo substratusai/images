@@ -48,7 +48,10 @@ jobs:
     needs: base
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ needs.base.outputs.tags }}
+      - id: base-tag
+        run: |
+          tag=$(echo "${{ needs.base.outputs.tag }}" | base64 --decode)
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up QEMU
@@ -72,7 +75,7 @@ jobs:
           context: ./${{ github.job }}
           platforms: "linux/amd64"
           build-args: |
-            BASE_IMAGE=${{ needs.base.outputs.tag }}
+            BASE_IMAGE=${{ steps.base-tag.outputs.tag }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
