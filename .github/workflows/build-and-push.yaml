@@ -44,14 +44,17 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
     outputs:
       tag: ${{ steps.tag.outputs.tag }}
+      tags: ${{ steps.meta.outputs.tags }}
   model-trainer-huggingface:
     needs: base
     runs-on: ubuntu-latest
     steps:
       - id: base-tag
         run: |
+          echo "${{ needs.base.outputs.tags}}"
           tag=$(echo "${{ needs.base.outputs.tag }}" | base64 --decode)
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up QEMU
