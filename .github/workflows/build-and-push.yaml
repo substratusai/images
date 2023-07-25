@@ -1,4 +1,4 @@
-name: base
+name: container-build-push
 run-name: ${{ github.actor }} triggered Docker pipeline for ${{ github.workflow }} 🚀
 on:
   push:
@@ -28,16 +28,18 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: substratusai/base
+          images: substratusai/${{ github.job }}
       - name: Build and push
         id: build-and-push
         uses: docker/build-push-action@v4
         with:
-          context: ./base
+          context: ./${{ github.job }}
           platforms: "linux/amd64"
-          push: ${{ github.event_name != 'pull_request' }}
+          push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+    outputs:
+      tags: ${{ steps.meta.outputs.tags }}
   model-trainer-huggingface:
     needs: base
     runs-on: ubuntu-latest
@@ -57,13 +59,15 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: substratusai/model-trainer-huggingface
+          images: substratusai/${{ github.job }}
       - name: Build and push
         id: build-and-push
         uses: docker/build-push-action@v4
         with:
-          context: ./model-trainer-huggingface
+          context: ./${{ github.job }}
           platforms: "linux/amd64"
+          build-args:
+          - BASE_IMAGE=${{ needs.base.tags[0] }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

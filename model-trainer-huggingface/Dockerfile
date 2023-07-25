@@ -1,5 +1,6 @@
 # FROM nvidia/cuda:11.7.1-devel-ubuntu22.04
-FROM substratusai/base
+ARG BASE_IMAGE=substratusai/base:latest
+FROM ${BASE_IMAGE}
 
 RUN mkdir -p /content/saved-model /content/model /content/logs /content/data /content/src
 WORKDIR /content
