@@ -32,7 +32,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./${{ github.job }}
-          platforms: "linux/amd64"
+          platforms: "linux/amd64,linux/arm64"
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -63,7 +63,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./${{ github.job }}
-          platforms: "linux/amd64"
+          platforms: "linux/amd64,linux/arm64"
           build-args: |
             BASE_IMAGE=${{ needs.base.outputs.tag }}
           push: ${{ github.event_name != 'pull_request' }}
@@ -94,7 +94,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./${{ github.job }}
-          platforms: "linux/amd64"
+          platforms: "linux/amd64,linux/arm64"
           build-args: |
             BASE_IMAGE=${{ needs.base.outputs.tag }}
           push: ${{ github.event_name != 'pull_request' }}
@@ -125,7 +125,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./${{ github.job }}
-          platforms: "linux/amd64"
+          platforms: "linux/amd64,linux/arm64"
           build-args: |
             BASE_IMAGE=${{ needs.base.outputs.tag }}
           push: ${{ github.event_name != 'pull_request' }}
@@ -156,7 +156,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./${{ github.job }}
-          platforms: "linux/amd64"
+          platforms: "linux/amd64,linux/arm64"
           build-args: |
             BASE_IMAGE=${{ needs.base.outputs.tag }}
           push: ${{ github.event_name != 'pull_request' }}
@@ -187,7 +187,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./${{ github.job }}
-          platforms: "linux/amd64"
+          platforms: "linux/amd64,linux/arm64"
           build-args: |
             BASE_IMAGE=${{ needs.base.outputs.tag }}
           push: ${{ github.event_name != 'pull_request' }}
