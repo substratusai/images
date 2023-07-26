@@ -1,3 +1,0 @@
-jupyterlab
-ipywidgets
-jupytext
