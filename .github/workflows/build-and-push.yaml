@@ -1,5 +1,5 @@
 name: container-build-push
-run-name: ${{ github.actor }} triggered Docker pipeline for ${{ github.workflow }} 🚀
+run-name: ${{ github.actor }} triggered container-build-push 🚀
 on:
   push:
     paths:
