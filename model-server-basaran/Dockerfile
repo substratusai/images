@@ -1,4 +1,5 @@
-FROM substratusai/base
+ARG BASE_IMAGE=substratusai/base:latest
+FROM ${BASE_IMAGE}
 
 ENV MODEL="/content/saved-model"
 ENV MODEL_LOCAL_FILES_ONLY="true"
