@@ -1,4 +1,3 @@
-# FROM nvidia/cuda:11.7.1-devel-ubuntu22.04
 ARG BASE_IMAGE=substratusai/base:latest
 FROM ${BASE_IMAGE}
 
