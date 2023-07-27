@@ -10,4 +10,5 @@ RUN pip install --no-cache-dir -r /content/requirements.txt
 COPY scripts/* ./scripts/
 COPY src/* ./src/
 
+ENTRYPOINT ["/tini", "--", "HUGGING_FACE_HUB_TOKEN=$PARAM_HUGGING_FACE_HUB_TOKEN"]
 CMD train.sh
