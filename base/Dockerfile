@@ -10,7 +10,13 @@ USER root
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
-    apt-get -y --no-install-recommends install python3 python3-pip git && \
+    apt-get -y --no-install-recommends install \
+    python3 \
+    python3-pip \
+    python3-dev \
+    gcc \
+    git \
+    && \
     rm -rf /var/lib/apt/lists/*
 
 
