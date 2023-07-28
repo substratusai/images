@@ -1,7 +1,9 @@
-
 import typing
 import inspect
+import json
+
 from transformers import TrainingArguments
+
 
 def parse_training_args(params: typing.Mapping) -> TrainingArguments:
     typed_params = dict(
@@ -12,7 +14,7 @@ def parse_training_args(params: typing.Mapping) -> TrainingArguments:
         fp16=True,
         logging_steps=1,
         output_dir="/content/model/checkpoints",
-        optim="paged_adamw_32bit"
+        optim="paged_adamw_32bit",
     )
 
     training_parameters = inspect.signature(TrainingArguments.__init__).parameters
@@ -20,7 +22,8 @@ def parse_training_args(params: typing.Mapping) -> TrainingArguments:
         if k in params:
             val = params.get(k)
             if v.annotation == bool:
-                val = bool(val)
+                # https://stackoverflow.com/questions/715417/converting-from-a-string-to-boolean-in-python
+                val = json.loads(str(val).lower())
             if v.annotation == str:
                 val = str(val)
             if v.annotation == int:
@@ -29,8 +32,6 @@ def parse_training_args(params: typing.Mapping) -> TrainingArguments:
                 val = float(val)
             typed_params[k] = val
 
-    args = TrainingArguments(
-        **typed_params
-    )
+    args = TrainingArguments(**typed_params)
 
     return args
