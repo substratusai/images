@@ -5,6 +5,38 @@ such that it can fine tune even 40 billion parameter models on a few L4 GPUs.
 
 The image expects a huggingface model under the /content/saved-model directory.
 
+## Usage
+
+Currently this image supports all HuggingFace transformer.TrainingArguments that
+you pass through Substratus `params` in the `Model` resource.
+
+See the TrainingArguments docs for available arguments: [TrainingArguments](https://huggingface.co/docs/transformers/main_classes/trainer#transformers.TrainingArguments)
+
+For example, if you wish to pass num_train_epochs, you can create a Model resource
+specifying the params. Below is an example Model resource that sets TrainingArguments:
+```
+apiVersion: substratus.ai/v1
+kind: Model
+metadata:
+  name: falcon-7b-instruct-k8s
+spec:
+  image:
+    name: substratusai/model-trainer-huggingface
+  baseModel:
+    name: falcon-7b-instruct
+  trainingDataset:
+    name: k8s-instructions
+  params:
+    num_train_epochs: 1
+    per_device_train_batch_size: 1
+    logging_first_step: True
+    optim: paged_adamw_32bit
+  resources:
+    gpu:
+      count: 4
+      type: nvidia-l4
+```
+
 ## Usage for testing
 
 ### Building
