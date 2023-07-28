@@ -3,7 +3,7 @@
 This image fine tunes large language models from HuggingFace. It's using PEFT
 such that it can fine tune even 40 billion parameter models on a few L4 GPUs.
 
-The image expects a huggingface model under the /model/saved/ directory.
+The image expects a huggingface model under the /content/saved-model directory.
 
 ## Usage for testing
 
