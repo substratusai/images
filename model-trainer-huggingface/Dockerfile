@@ -10,4 +10,5 @@ RUN pip install --no-cache-dir -r /content/requirements.txt
 COPY scripts/* ./scripts/
 COPY src/* ./src/
 
+ENTRYPOINT ["/tini", "--", "/content/scripts/entrypoint.sh"]
 CMD train.sh
