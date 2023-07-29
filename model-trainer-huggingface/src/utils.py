@@ -22,8 +22,10 @@ def parse_training_args(params: typing.Mapping) -> TrainingArguments:
         if k in params:
             val = params.get(k)
             if v.annotation == bool:
-                # https://stackoverflow.com/questions/715417/converting-from-a-string-to-boolean-in-python
-                val = json.loads(str(val).lower())
+                try:
+                    val = json.loads(str(val).lower())
+                except json.decoder.JSONDecodeError:
+                    raise ValueError(f"{k} is of type bool. Only True or False are allowed values. You provided {val}")
             if v.annotation == str:
                 val = str(val)
             if v.annotation == int:

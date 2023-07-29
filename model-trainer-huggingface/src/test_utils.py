@@ -1,4 +1,7 @@
+import json
+import pytest
 from .utils import parse_training_args
+
 
 def test_parse_training_args_int_float():
     params = {"num_train_epochs": "1"}
@@ -27,11 +30,13 @@ def test_parse_training_args_bool():
     assert args.logging_first_step == False
 
 
+def test_parse_training_args_bool_invalid():
+    params = {"logging_first_step": "yes"}
+    with pytest.raises(ValueError):
+        args = parse_training_args(params)
+
+
 def test_parse_training_args_str():
     params = {"logging_first_step": "True"}
     args = parse_training_args(params)
     assert args.logging_first_step == True
-
-    params = {"logging_first_step": "False"}
-    args = parse_training_args(params)
-    assert args.logging_first_step == False
