@@ -1,0 +1,9 @@
+apiVersion: substratus.ai/v1
+kind: Notebook
+metadata:
+  name: model-loader-dev
+spec:
+  image: substratusai/model-loader-huggingface
+  command: ["notebook.sh"]
+  params:
+    name: tiiuae/falcon-7b-instruct
