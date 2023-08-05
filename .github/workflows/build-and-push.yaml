@@ -25,7 +25,7 @@ jobs:
         with:
           username: "${{ vars.DOCKERHUB_USERNAME }}"
           password: "${{ secrets.DOCKERHUB_TOKEN }}"
-      - name: Log in to the Container registry
+      - name: Log in to the GitHub Container registry
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
@@ -51,6 +51,9 @@ jobs:
       tag: ${{ fromJSON(steps.meta.outputs.json).tags[0] }}
   model-trainer-huggingface:
     needs: base
+    permissions:
+      packages: write
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -64,11 +67,19 @@ jobs:
         with:
           username: "${{ vars.DOCKERHUB_USERNAME }}"
           password: "${{ secrets.DOCKERHUB_TOKEN }}"
+      - name: Log in to the GitHub Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: substratusai/${{ github.job }}
+          images: |
+            substratusai/${{ github.job }}
+            ghcr.io/${{ github.repository }}/${{ github.job }}
       - name: Build and push
         id: build-and-push
         uses: docker/build-push-action@v4
@@ -95,11 +106,19 @@ jobs:
         with:
           username: "${{ vars.DOCKERHUB_USERNAME }}"
           password: "${{ secrets.DOCKERHUB_TOKEN }}"
+      - name: Log in to the GitHub Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: substratusai/${{ github.job }}
+          images: |
+            substratusai/${{ github.job }}
+            ghcr.io/${{ github.repository }}/${{ github.job }}
       - name: Build and push
         id: build-and-push
         uses: docker/build-push-action@v4
@@ -126,11 +145,19 @@ jobs:
         with:
           username: "${{ vars.DOCKERHUB_USERNAME }}"
           password: "${{ secrets.DOCKERHUB_TOKEN }}"
+      - name: Log in to the GitHub Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: substratusai/${{ github.job }}
+          images: |
+            substratusai/${{ github.job }}
+            ghcr.io/${{ github.repository }}/${{ github.job }}
       - name: Build and push
         id: build-and-push
         uses: docker/build-push-action@v4
@@ -157,11 +184,19 @@ jobs:
         with:
           username: "${{ vars.DOCKERHUB_USERNAME }}"
           password: "${{ secrets.DOCKERHUB_TOKEN }}"
+      - name: Log in to the GitHub Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: substratusai/${{ github.job }}
+          images: |
+            substratusai/${{ github.job }}
+            ghcr.io/${{ github.repository }}/${{ github.job }}
       - name: Build and push
         id: build-and-push
         uses: docker/build-push-action@v4
@@ -188,11 +223,19 @@ jobs:
         with:
           username: "${{ vars.DOCKERHUB_USERNAME }}"
           password: "${{ secrets.DOCKERHUB_TOKEN }}"
+      - name: Log in to the GitHub Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: substratusai/${{ github.job }}
+          images: |
+            substratusai/${{ github.job }}
+            ghcr.io/${{ github.repository }}/${{ github.job }}
       - name: Build and push
         id: build-and-push
         uses: docker/build-push-action@v4
