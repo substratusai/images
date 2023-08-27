@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=substratusai/base:latest
+ARG BASE_IMAGE=nvidia/cuda:12.1.1-devel-ubuntu22.04
 FROM ${BASE_IMAGE}
 
 ENV MODEL_DIR="/content/saved-model"
@@ -20,6 +20,7 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 # setting build related env vars
 ENV CUDA_DOCKER_ARCH=all
 ENV LLAMA_CUBLAS=1
+ENV USE_MLOCK=0
 
 # Install depencencies
 RUN python3 -m pip install --upgrade pip pytest cmake scikit-build setuptools fastapi uvicorn sse-starlette pydantic-settings
