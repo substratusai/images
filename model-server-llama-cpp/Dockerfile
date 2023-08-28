@@ -22,9 +22,6 @@ RUN /venv/bin/python3 -m pip install --upgrade pip wheel pytest cmake scikit-bui
 
 RUN git clone --recurse-submodules https://github.com/abetlen/llama-cpp-python.git && \
     cd llama-cpp-python && make build.cuda
-# Install llama-cpp-python (build with cuda)
-# RUN CMAKE_ARGS="-DLLAMA_CUBLAS=on" FORCE_CMAKE=1 /venv/bin/python3 -m pip install llama-cpp-python
-
 
 FROM ${BASE_IMAGE}
 
