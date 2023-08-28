@@ -39,3 +39,9 @@ curl http://localhost:8080/v1/completions \
   -H "Content-Type: application/json" \
   -d '{ "prompt": "Who was the first president of the United States?", "stop": ["."]}'
 ```
+
+You can also run a OpenAI compatible UI to test it out:
+```bash
+docker run -e OPENAI_API_KEY=notused -e OPENAI_API_HOST=http://localhost:8080 \
+  --net=host -p 3000:3000 ghcr.io/mckaywrigley/chatbot-ui:main
+```
