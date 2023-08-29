@@ -209,18 +209,40 @@ jobs:
           username: "${{ vars.DOCKERHUB_USERNAME }}"
           password: "${{ secrets.DOCKERHUB_TOKEN }}"
       - name: Docker meta
-        id: meta
+        id: meta-cpu
         uses: docker/metadata-action@v4
         with:
           images: substratusai/${{ github.job }}
+          flavor: |
+            latest=auto
+            suffix=-cpu
       - name: Build and push
-        id: build-and-push
         uses: docker/build-push-action@v4
         with:
           context: ./${{ github.job }}
           platforms: "linux/amd64"
           build-args: |
             BASE_IMAGE=${{ needs.base.outputs.tag }}
+            COMPUTE_TYPE=cpu
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta-cpu.outputs.tags }}
+          labels: ${{ steps.meta-cpu.outputs.labels }}
+      - name: Docker meta
+        id: meta-gpu
+        uses: docker/metadata-action@v4
+        with:
+          images: substratusai/${{ github.job }}
+          flavor: |
+            latest=auto
+            suffix=-gpu,onlatest=true
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: ./${{ github.job }}
+          platforms: "linux/amd64"
+          build-args: |
+            BASE_IMAGE=${{ needs.base.outputs.tag }}
+            COMPUTE_TYPE=gpu
+          push: true
+          tags: ${{ steps.meta-gpu.outputs.tags }}
+          labels: ${{ steps.meta-gpu.outputs.labels }}
