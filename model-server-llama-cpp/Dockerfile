@@ -1,5 +1,7 @@
 ARG BASE_IMAGE=substratusai/base:latest
+ARG COMPUTE_TYPE=gpu
 FROM nvidia/cuda:12.2.0-devel-ubuntu22.04 as build
+ARG COMPUTE_TYPE
 
 RUN --mount=type=cache,target=/var/cache/apt --mount=type=cache,target=/var/lib/apt \
     apt-get update && \
@@ -20,8 +22,10 @@ ENV LLAMA_CUBLAS=1
 # Install depencencies
 RUN /venv/bin/python3 -m pip install --upgrade pip wheel pytest cmake scikit-build setuptools fastapi uvicorn sse-starlette pydantic-settings
 
-RUN git clone --recurse-submodules https://github.com/abetlen/llama-cpp-python.git && \
-    cd llama-cpp-python && make build.cuda
+RUN git clone --recurse-submodules https://github.com/abetlen/llama-cpp-python.git
+WORKDIR /llama-cpp-python
+RUN if [ "$COMPUTE_TYPE" = "gpu" ]; then make build.cuda; fi
+RUN if [ "$COMPUTE_TYPE" = "cpu" ]; then make build.openblas; fi
 
 FROM ${BASE_IMAGE}
 
