@@ -6,7 +6,7 @@ export SERVER_MODEL_NAME="$HOSTNAME"
 export MODEL_LOAD_IN_4BIT="${PARAM_LOAD_IN_4BIT:-false}"
 
 # Backwards compatiblity to keep load in 8 bit the default
-if [ "${LOAD_IN_4BIT}" = "false" ]; then
+if [ "${MODEL_LOAD_IN_4BIT}" = "false" ]; then
 echo "Loading model in 8 bit mode"
 export MODEL_LOAD_IN_8BIT="true"
 else
