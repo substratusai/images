@@ -40,3 +40,8 @@ def test_parse_training_args_str():
     params = {"logging_first_step": "True"}
     args = parse_training_args(params)
     assert args.logging_first_step == True
+
+def test_parse_training_args_push_to_hub():
+    params = {"push_to_hub": "substratusai/test-model"}
+    args = parse_training_args(params)
+    assert args.push_to_hub == False
