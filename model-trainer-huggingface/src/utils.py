@@ -4,6 +4,7 @@ import json
 
 from transformers import TrainingArguments
 
+ignore_training_args = set("push_to_hub")
 
 def parse_training_args(params: typing.Mapping) -> TrainingArguments:
     typed_params = dict(
@@ -19,7 +20,7 @@ def parse_training_args(params: typing.Mapping) -> TrainingArguments:
 
     training_parameters = inspect.signature(TrainingArguments.__init__).parameters
     for k, v in training_parameters.items():
-        if k in params:
+        if k in params and k not in ignore_training_args:
             val = params.get(k)
             if v.annotation == bool:
                 try:
