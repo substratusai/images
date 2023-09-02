@@ -21,7 +21,6 @@ def parse_training_args(params: typing.Mapping) -> TrainingArguments:
     training_parameters = inspect.signature(TrainingArguments.__init__).parameters
     for k, v in training_parameters.items():
         if k in params and k not in ignore_training_args:
-            print(k)
             val = params.get(k)
             if v.annotation == bool:
                 try:
