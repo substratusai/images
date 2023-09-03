@@ -1,0 +1,5 @@
+jupyterlab
+ipywidgets
+jupytext
+
+huggingface_hub
