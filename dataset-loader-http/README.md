@@ -13,8 +13,12 @@ docker build -t dataset-loader-http .
 Explore and develop with a Jupyter Lab:
 ```sh
 # Run a Jupyter Notebook.
+cat > params.json << EOF
+{"urls": "https://huggingface.co/datasets/substratusai/k8s-instructions/raw/main/k8s-instructions.jsonl"}
+EOF
+
 docker run -it -v $(pwd)/src:/content/src -p 8888:8888 \
-  -e PARAM_URLS=https://huggingface.co/datasets/substratusai/k8s-instructions/raw/main/k8s-instructions.jsonl \
+  -v $(pwd)/params.json:/content/params.json \
   dataset-loader-http notebook.sh
 ```
 Now open your browser at http://localhost:8888
