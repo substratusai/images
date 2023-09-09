@@ -23,6 +23,7 @@ docker build -t substratusai/base .
 Test it out by placing a notebook in `/content` directory:
 ```
 docker run -ti -v $(pwd)/test.ipynb:/content/test.ipynb \
+  -v $(pwd)/artifacts:/content/artifacts \
   --security-opt seccomp=unconfined \
   substratusai/base bash
 ```
