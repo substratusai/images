@@ -18,8 +18,9 @@ RUN apt-get update && \
 # Precreate some paths for convenience (when mounts are not present).
 WORKDIR /content
 ENV PATH="$PATH:/content/scripts"
+RUN mkdir -p /content/artifacts
 
-RUN pip3 install --no-cache-dir jupyterlab
+RUN pip3 install --no-cache-dir jupyterlab papermill
 
 COPY scripts/* scripts/
 

@@ -4,14 +4,17 @@ set -xe
 
 if [[ -z "$NOTEBOOK" ]]; then
   for nb in /content/*.ipynb; do
-    jupyter nbconvert --debug --to notebook --execute $nb --output /content/artifacts/$(basename "$nb")
+    [ -e "$nb" ] || continue
+    papermill $nb /content/artifacts/$(basename "$nb") --autosave-cell-every=1
   done
   for nb in /content/src/*.ipynb; do
+    [ -e "$nb" ] || continue
     mkdir -p /content/artifacts/src
-    jupyter nbconvert --debug --to notebook --execute $nb --output /content/artifacts/src/$(basename "$nb")
+    papermill $nb /content/artifacts/src/$(basename "$nb") --autosave-cell-every=1
   done
 else
   for nb in $NOTEBOOK; do
-    jupyter nbconvert --debug --to notebook --execute $NOTEBOOK --output /content/artifacts/$(basename "$NOTEBOOK")
+    [ -e "$nb" ] || continue
+    papermill $nb /content/artifacts/$(basename "$nb") --autosave-cell-every=1
   done
 fi
