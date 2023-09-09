@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+set -xe
 
 if [[ -z "$NOTEBOOK" ]]; then
   for nb in /content/*.ipynb; do
