@@ -20,7 +20,8 @@ WORKDIR /content
 ENV PATH="$PATH:/content/scripts"
 RUN mkdir -p /content/artifacts
 
-RUN pip3 install --no-cache-dir jupyterlab papermill watchdog
+COPY requirements.txt /tmp/requirements.txt
+RUN pip3 install --no-cache-dir -r /tmp/requirements.txt
 
 COPY scripts/* scripts/
 
