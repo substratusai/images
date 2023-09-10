@@ -16,12 +16,12 @@ class HTMLExecutionManager(NotebookExecutionManager):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.html_exporter = HTMLExporter()
+        self.html_output_path = Path(self.output_path).with_suffix(".html")
 
     def save(self, **kwargs):
         super().save(**kwargs)
         html_output, _ = self.html_exporter.from_notebook_node(self.nb)
-        html_output_path = Path(self.output_path).with_suffix(".html")
-        with html_output_path.open("w", encoding ="utf-8") as f:
+        with self.html_output_path.open("w", encoding ="utf-8") as f:
             f.write(html_output)
 
 class HTMLEngine(NBClientEngine):
