@@ -1,7 +1,7 @@
 ARG BASE_IMAGE=substratusai/base:latest
 FROM ${BASE_IMAGE}
 
-RUN mkdir -p /content/saved-model /content/model /content/logs /content/data /content/src
+RUN mkdir -p /content/model /content/logs /content/data /content/src
 WORKDIR /content
 
 COPY requirements.txt /content/requirements.txt

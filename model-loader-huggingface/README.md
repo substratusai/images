@@ -19,8 +19,7 @@ EOF
 docker run -it \
   -v $(pwd)/src:/content/src \
   -v $(pwd)/params.json:/content/params.json \
-  -v $(pwd)/logs:/content/logs \
-  -v $(pwd)/model:/content/model \
+  -v $(pwd)/artifacts:/content/artifacts \
   -p 8888:8888 \
   substratusai/model-loader-huggingface notebook.sh
 ```
@@ -35,8 +34,7 @@ cat > params.json <<EOF
 EOF
 docker run -it \
   -v $(pwd)/params.json:/content/params.json \
-  -v $(pwd)/logs:/content/logs \
-  -v $(pwd)/model:/content/model \
+  -v $(pwd)/artifacts:/content/artifacts \
   substratusai/model-loader-huggingface
 ```
 

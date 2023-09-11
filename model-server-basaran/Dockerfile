@@ -1,7 +1,7 @@
 ARG BASE_IMAGE=substratusai/base:latest
 FROM ${BASE_IMAGE}
 
-ENV MODEL="/content/saved-model"
+ENV MODEL="/content/model"
 ENV MODEL_LOCAL_FILES_ONLY="true"
 ENV MODEL_TRUST_REMOTE_CODE="true"
 ENV PORT=8080
