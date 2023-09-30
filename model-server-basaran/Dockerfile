@@ -17,7 +17,7 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-COPY scripts/ scripts/
+COPY serve.sh /usr/local/bin/
 
 CMD serve.sh
 EXPOSE $PORT
