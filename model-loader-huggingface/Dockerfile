@@ -6,7 +6,7 @@ RUN mkdir -p /content/model
 COPY requirements.txt requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-COPY scripts/* scripts/
+COPY load.sh /usr/local/bin/
 COPY src/* src/
 
 CMD load.sh
