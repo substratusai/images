@@ -7,7 +7,4 @@ WORKDIR /content
 COPY requirements.txt /content/requirements.txt
 RUN pip install --no-cache-dir -r /content/requirements.txt
 
-COPY scripts/* ./scripts/
 COPY src/* ./src/
-
-CMD train.sh
