@@ -2,7 +2,7 @@
 
 This image can be used to serve models that are in GGML format.
 
-The image expects a single GGML model as a single bin file under the /content/saved-model/ directory.
+The image expects a single GGML model as a single bin file under the /content/model/ directory.
 
 ## Usage for testing
 
@@ -33,16 +33,16 @@ You can run it in CPU only mode or with GPU.
 Run the image with that model using CPU:
 ```bash
 docker run -d -p 8080:8080 --security-opt seccomp=unconfined  \
-  -v $PWD/model.bin:/content/saved-model/model.bin --cap-add SYS_RESOURCE \
-  -e USE_MLOCK=0 -e MODEL=/content/saved-model/model.bin \
+  -v $PWD/model.bin:/content/model/model.bin --cap-add SYS_RESOURCE \
+  -e USE_MLOCK=0 -e MODEL=/content/model/model.bin \
   llama-cpp:cpu
 ```
 
 Run the image with that model using GPU:
 ```bash
 docker run --gpus=all -d -p 8080:8080 --security-opt seccomp=unconfined  \
-  -v $PWD/model.bin:/content/saved-model/model.bin --cap-add SYS_RESOURCE \
-  -e USE_MLOCK=0 -e MODEL=/content/saved-model/model.bin \
+  -v $PWD/model.bin:/content/model/model.bin --cap-add SYS_RESOURCE \
+  -e USE_MLOCK=0 -e MODEL=/content/model/model.bin \
   -e N_GPU_LAYERS=30 llama-cpp:gpu
 ```
 Note that `N_GPU_LAYERS` will cause it to load 30 layers to the GPU. You can increase

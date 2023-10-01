@@ -1,7 +1,7 @@
 ARG BASE_IMAGE=substratusai/base:latest
 FROM ${BASE_IMAGE}
 
-ENV MODEL="/content/saved-model"
+ENV MODEL="/content/model"
 ENV MODEL_LOCAL_FILES_ONLY="true"
 ENV MODEL_TRUST_REMOTE_CODE="true"
 ENV PORT=8080
@@ -17,7 +17,7 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-COPY scripts/ scripts/
+COPY serve.sh /usr/local/bin/
 
 CMD serve.sh
 EXPOSE $PORT

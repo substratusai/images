@@ -17,11 +17,12 @@ RUN apt-get update && \
 # Using /content matches colab.
 # Precreate some paths for convenience (when mounts are not present).
 WORKDIR /content
-ENV PATH="$PATH:/content/scripts"
+RUN mkdir -p /content/artifacts
 
-RUN pip3 install --no-cache-dir jupyterlab
+COPY requirements.txt /tmp/requirements.txt
+RUN pip3 install --no-cache-dir -r /tmp/requirements.txt
 
-COPY scripts/* scripts/
+COPY scripts/* /usr/local/bin/
 
 # Tini for signal handling, etc.
 # https://github.com/krallin/tini
@@ -30,4 +31,4 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
 ENTRYPOINT ["/tini", "--"]
 
-CMD ["notebook.sh"]
+CMD ["run-notebook.sh"]

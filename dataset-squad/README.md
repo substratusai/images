@@ -14,7 +14,9 @@ Explore and develop with a Jupyter Lab.
 
 ```sh
 # Run a Jupyter Notebook.
-docker run -it -v $(pwd)/data:/data -v $(pwd)/src:/dataset/src -p 8888:8888 dataset-squad notebook.sh
+docker run -it -v $(pwd)/artifacts:/content/artifacts \
+  -v $(pwd)/load.ipynb:/content/load.ipynb -p 8888:8888 \
+  dataset-squad notebook.sh
 
 # In another terminal: Open browser.
 open http://localhost:8888
@@ -26,7 +28,7 @@ open http://localhost:8888
 Fetch data.
 
 ```sh
-docker run -e -v $(pwd)/data:/data -v $(pwd)/logs:/dataset/logs squad-dataset load.sh
+docker run -e -v $(pwd)/artifacts:/content/artifacts squad-dataset
 
 head data/*
 ```

@@ -31,7 +31,7 @@ FROM ${BASE_IMAGE}
 
 WORKDIR /content
 ENV USE_MLOCK=0
-ENV MODEL_DIR="/content/saved-model"
+ENV MODEL_DIR="/content/model"
 ENV HOST=0.0.0.0
 ENV PORT=8080
 ENV PATH="/venv/bin:$PATH"
