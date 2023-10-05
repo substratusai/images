@@ -1,6 +1,5 @@
 torch
 xformers
-jupyterlab
 transformers
 peft
 accelerate
@@ -13,5 +12,3 @@ protobuf
 scipy
 einops
 uvicorn
-
-jupytext
