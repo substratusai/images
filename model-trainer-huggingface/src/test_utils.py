@@ -11,13 +11,13 @@ def test_parse_training_args_int_float():
     args = parse_training_args(params)
     assert args.num_train_epochs == 1.0
     assert args.max_steps == 5
-    assert args.output_dir == "/content/model/checkpoints"
+    assert args.output_dir == "/content/artifacts/checkpoints"
 
     params = {"num_train_epochs": "2.0", "max_steps": "5"}
     args = parse_training_args(params)
     assert args.num_train_epochs == 2.0
     assert args.max_steps == 5
-    assert args.output_dir == "/content/model/checkpoints"
+    assert args.output_dir == "/content/artifacts/checkpoints"
 
 
 def test_parse_training_args_bool():
