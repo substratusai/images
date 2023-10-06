@@ -1,9 +1,8 @@
 torch
 xformers
-jupyterlab
-git+https://github.com/huggingface/transformers.git
-git+https://github.com/huggingface/peft.git
-git+https://github.com/huggingface/accelerate.git
+transformers
+peft
+accelerate
 huggingface_hub
 bitsandbytes
 ipywidgets
@@ -13,5 +12,3 @@ protobuf
 scipy
 einops
 uvicorn
-
-jupytext

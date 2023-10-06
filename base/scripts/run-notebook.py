@@ -20,8 +20,8 @@ parser.add_argument('notebook_output_path', help="The path where the .ipynb note
 parser.add_argument('-c', '--cwd', help="Change the working directory")
 args = parser.parse_args()
 
-logging.basicConfig(level=logging.INFO, format="%(message)s")
-logger.setLevel(logging.INFO)
+logging.basicConfig(level=logging.DEBUG, format="%(message)s")
+logger.setLevel(logging.DEBUG)
 
 class HTMLExecutionManager(NotebookExecutionManager):
     def __init__(self, *args, **kwargs):

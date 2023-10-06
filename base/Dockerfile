@@ -20,7 +20,8 @@ WORKDIR /content
 RUN mkdir -p /content/artifacts
 
 COPY requirements.txt /tmp/requirements.txt
-RUN pip3 install --no-cache-dir -r /tmp/requirements.txt
+RUN pip3 install --upgrade pip && \
+    pip3 install --no-cache-dir -r /tmp/requirements.txt
 
 COPY scripts/* /usr/local/bin/
 

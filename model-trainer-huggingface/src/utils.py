@@ -14,7 +14,7 @@ def parse_training_args(params: typing.Mapping) -> TrainingArguments:
         learning_rate=2e-4,
         fp16=True,
         logging_steps=1,
-        output_dir="/content/model/checkpoints",
+        output_dir="/content/artifacts/checkpoints",
         optim="paged_adamw_32bit",
     )
 
