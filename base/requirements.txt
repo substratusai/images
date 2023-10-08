@@ -2,5 +2,6 @@ jupyterlab
 jupyter-collaboration
 jupyterlab-lsp
 python-lsp-server[all]
+jupyter-resource-usage
 papermill
 ipywidgets
