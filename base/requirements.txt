@@ -1,2 +1,5 @@
 jupyterlab
+jupyter-collaboration
+jupyter-resource-usage
 papermill
+ipywidgets
