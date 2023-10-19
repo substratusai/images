@@ -8,6 +8,7 @@ bitsandbytes
 ipywidgets
 datasets
 protobuf
+sentencepiece
 
 scipy
 einops
