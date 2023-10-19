@@ -9,6 +9,7 @@ ignore_training_args = ["push_to_hub"]
 def parse_training_args(params: typing.Mapping) -> TrainingArguments:
     typed_params = dict(
         per_device_train_batch_size=1,
+        per_device_eval_batch_size=1,
         gradient_accumulation_steps=4,
         warmup_ratio=0.02,
         learning_rate=3e-5,
